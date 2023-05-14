@@ -23,7 +23,7 @@ As mentioned earlier, this project is created just to exist. And so, the module 
 **[Python 3.8](https://www.python.org/downloads/) or higher is required**
 
 To install a non-`speedup` version of the library, do the following:
-> ```ps
+> ```sh
 > # Linux/macOS
 > python3 -m pip install -U tankioapi
 >
@@ -32,7 +32,7 @@ To install a non-`speedup` version of the library, do the following:
 > ```
 
 Or, to install the `speedup` version, do the following:
-> ```ps
+> ```sh
 > # Linux/macOS
 > python3 -m pip install -U "tankioapi[speedup]"
 >
@@ -41,7 +41,7 @@ Or, to install the `speedup` version, do the following:
 > ```
 
 And, to install the development version, do the following:
-> ```ps
+> ```sh
 > $ git clone https://github.com/stngularity/tankioapi
 > $ cd tankioapi
 > $ python3 -m pip install -U .[speedup]
@@ -82,3 +82,6 @@ print(f"Caught golds: {user.caught_golds}")
 print(f"Crystals: {user.crystals}")
 print(f"GS: {user.gear_score}")
 ```
+
+## License
+This project is distributed under the `MIT` license. You can learn more from the [**LICENSE**](/blob/main/LICENSE) file.
