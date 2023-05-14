@@ -1,3 +1,4 @@
 pyright
 pylint
 isort
+twine
