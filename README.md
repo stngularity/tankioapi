@@ -12,7 +12,7 @@
 This project was created just to exist. Of course, I will update it when the API itself changes, but not immediately. Well, if You want to support this project, You can give it a star.
 
 ## Information
-As mentioned earlier, this project is created just to exist. And so, the module itself is needed to get the top of players and get information about the player separately. If You know more functionality of the API of the game `Tanki Online`, then please report this functionality in the [`Issues`](/issues).
+As mentioned earlier, this project is created just to exist. And so, the module itself is needed to get the top of players and get information about the player separately. If You know more functionality of the API of the game `Tanki Online`, then please report this functionality in the [`Issues`](https://github.com/stngularity/tankioapi/issues).
 
 ###### Features
 - `async`/`await` support
@@ -48,7 +48,7 @@ And, to install the development version, do the following:
 > ```
 
 ## Examples
-Here are examples of some of the features of the library. More examples in [`examples/`](/blob/main/examples)
+Here are examples of some of the features of the library. More examples in [`examples/`](/examples)
 
 ###### Getting all tops of players
 ```py
@@ -84,4 +84,4 @@ print(f"GS: {user.gear_score}")
 ```
 
 ## License
-This project is distributed under the `MIT` license. You can learn more from the [**LICENSE**](/blob/main/LICENSE) file.
+This project is distributed under the `MIT` license. You can learn more from the [**LICENSE**](/LICENSE) file.
