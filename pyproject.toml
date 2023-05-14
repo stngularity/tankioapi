@@ -1,0 +1,61 @@
+# The configuration of project
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tankioapi"
+authors = [{name = "stngularity", email = "stngularity@gmail.com"}]
+description = "A Python written wrapper for the Tanki Online game API"
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["game", "api", "to", "tanki online"]
+license = {text = "MIT License"}
+dynamic = ["version", "dependencies", "optional-dependencies"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Utilities",
+    "Typing :: Typed"
+]
+
+[project.urls]
+homepage = "https://github.com/stngularity/tankioapi.py"
+"Source Code" = "https://github.com/stngularity/tankioapi.py"
+changelog = "https://github.com/stngularity/tankioapi.py/blob/main/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/stngularity/tankioapi.py/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["toapi*"]
+namespaces = false
+
+# The configuration for "iSort" tool
+[tool.isort]
+profile = "black"
+combine_as_imports = true
+combine_star = true
+line_length = 120
+
+# The configuration for "PyRight" tool
+[tool.pyright]
+include = ["src/toapi", "src/toapi/dataclasses"]
+exclude = ["**/__pycache__",]
+reportUnnecessaryTypeIgnoreComment = "warning"
+reportUnusedImport = "error"
+pythonVersion = "3.8"
+typeCheckingMode = "basic"
+
+# The configuration for "PyLint" tool
+[tool.pylint]
+max-line-length = 120
+disable = ["W0621"]
