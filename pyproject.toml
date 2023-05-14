@@ -29,7 +29,7 @@ classifiers = [
 ]
 
 [project.urls]
-homepage = "https://github.com/stngularity/tankioapi"
+"Homepage" = "https://github.com/stngularity/tankioapi"
 "Source Code" = "https://github.com/stngularity/tankioapi"
 changelog = "https://github.com/stngularity/tankioapi/blob/main/CHANGELOG.md"
 "Bug Tracker" = "https://github.com/stngularity/tankioapi/issues"

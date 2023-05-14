@@ -47,10 +47,10 @@ if __name__ == "__main__":
 
         url="https://github.com/stngularity/tankioapi.py",
         project_urls={
-            "Homepage": "https://github.com/stngularity/tankioapi.py",
-            "Source Code": "https://github.com/stngularity/tankioapi.py",
-            "Changelog": "https://github.com/stngularity/tankioapi.py/blob/main/CHANGELOG.md",
-            "Bug Tracker": "https://github.com/stngularity/tankioapi.py/issues"
+            "Homepage": "https://github.com/stngularity/tankioapi",
+            "Source Code": "https://github.com/stngularity/tankioapi",
+            "Changelog": "https://github.com/stngularity/tankioapi/blob/main/CHANGELOG.md",
+            "Bug Tracker": "https://github.com/stngularity/tankioapi/issues"
         },
 
         python_requires=">=3.8",
