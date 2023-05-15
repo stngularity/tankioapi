@@ -15,7 +15,7 @@ This project was created just to exist. Of course, I will update it when the API
 As mentioned earlier, this project is created just to exist. And so, the module itself is needed to get the top of players and get information about the player separately. If You know more functionality of the API of the game `Tanki Online`, then please report this functionality in the [`Issues`](https://github.com/stngularity/tankioapi/issues).
 
 ###### Features
-- fully `async`/`await`
+- Fully `async`/`await`
 - Getting top of players
 - Getting information of any player by him name
 - Getting status of stable server ` Maybe deprecated `
