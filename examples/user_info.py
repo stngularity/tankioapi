@@ -8,7 +8,8 @@ async def main():
     """The entrypoint of the example"""
     user: User = await get_user("sty", lang="ru")
     print(f"Name: {user.name}")
-    print(f"Rank: #{user.rank.name} ({user.score}/{user.score_next} {round(user.score/user.score_next*100)}%)")
+    rank: str = user.rank.name.title()
+    print(f"Rank: {rank} ({user.score}/{user.score_next} {round(user.score/user.score_next*100)}%)")
     print(f"Has premium: {'Yes' if user.premium else 'No'}")
     print()
     print(f"KD: {user.kills}/{user.deaths} ({user.kd_ratio})")
