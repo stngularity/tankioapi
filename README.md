@@ -15,9 +15,10 @@ This project was created just to exist. Of course, I will update it when the API
 As mentioned earlier, this project is created just to exist. And so, the module itself is needed to get the top of players and get information about the player separately. If You know more functionality of the API of the game `Tanki Online`, then please report this functionality in the [`Issues`](https://github.com/stngularity/tankioapi/issues).
 
 ###### Features
-- `async`/`await` support
+- fully `async`/`await`
 - Getting top of players
 - Getting information of any player by him name
+- Getting status of stable server ` Maybe deprecated `
 
 ## Installing
 **[Python 3.8](https://www.python.org/downloads/) or higher is required**
@@ -53,31 +54,31 @@ Here are examples of some of the features of the library. More examples in [`exa
 ###### Getting all tops of players
 ```py
 import asyncio
-from toapi import TankiOnline
+from toapi import Top, TopLists, get_tops
 
-tops = asyncio.run(TankiOnline.get_tops())
-for top in tops.values():
-    print(f"----- {top.name} -----")
-    for number, user in enumerate(top.users):
-        print(f"#{number+1}   {user.name} ({user.top_value})")
 
-    print()
+tops: TopLists = asyncio.run(get_tops())
+efficiency_top: Top = tops.efficiency
+print("----- Efficiency top -----")
+for number, user in enumerate(efficiency_top.users):
+    print(f"#{number+1}   {user.name} ({user.top_value})")
 ```
 
 ###### Getting information of player
 ```py
 import asyncio
-from toapi import TankiOnline
+from toapi import User, get_user
 
-user = asyncio.run(TankiOnline.get_user("sty"))
+user = asyncio.run(get_user("sty"))
 # and You can specify language
-# user = asyncio.run(TankiOnline.get_user("sty", lang="ru"))
+# user = asyncio.run(get_user("sty", lang="ru"))
 
 print(f"Name: {user.name}")
-print(f"Rank: #{user.rank.number} ({user.score}/{user.score_next} {round(user.score/user.score_next*100)}%)")
+rank: str = user.rank.name.title()
+print(f"Rank: {rank} ({user.score}/{user.score_next} {round(user.score/user.score_next*100)}%)")
 print(f"Has premium: {'Yes' if user.premium else 'No'}")
 print()
-print(f"KD: {user.kills}/{user.deaths} ({round(user.kills/user.deaths, 2)})")
+print(f"KD: {user.kills}/{user.deaths} ({user.kd_ratio})")
 print(f"Caught golds: {user.caught_golds}")
 print(f"Crystals: {user.crystals}")
 print(f"GS: {user.gear_score}")
