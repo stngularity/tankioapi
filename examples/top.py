@@ -1,20 +1,16 @@
 """The example of working with tops"""
 
 import asyncio
-from typing import Dict
-
-from toapi import TankiOnline, Top
+from toapi import Top, TopLists, get_tops
 
 
 async def main():
     """The entrypoint of the example"""
-    tops: Dict[str, Top] = await TankiOnline.get_tops()
-    for top in tops.values():
-        print(f"----- {top.name} -----")
-        for number, user in enumerate(top.users):
-            print(f"#{number+1}   {user.name} ({user.top_value})")
-
-        print()
+    tops: TopLists = await get_tops()
+    efficiency_top: Top = tops.efficiency
+    print("----- Efficiency top -----")
+    for number, user in enumerate(efficiency_top.users):
+        print(f"#{number+1}   {user.name} ({user.top_value})")
 
 if __name__ == "__main__":
     asyncio.run(main())

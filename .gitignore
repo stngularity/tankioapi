@@ -1,3 +1,11 @@
+# Python cache
 __pycache__/
+*.pyc
+
+# Build (deploy to PyPI)
 dist/
+build/
 *.egg-info
+
+# Editor
+.vscode/
