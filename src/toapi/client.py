@@ -8,7 +8,7 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 from typing import Any, Mapping
 
-from .types import TopLists, User
+from .types import TopLists, User, StableServerStatus
 from .errors import TankiOnlineException, UserNotFoundError
 from .http import request
 
@@ -52,3 +52,12 @@ async def get_user(name: str, *, lang: str = "en") -> User:
         raise UserNotFoundError(name, f"Failed to find player with \"{name}\" name")
 
     return User.from_json(response["response"])
+
+
+async def get_status() -> StableServerStatus:
+    """:class:`StableServerStatus`: Gets the status of stable game server.
+    
+    Maybe deprecated. I don't know this. Judging by the content of the
+    response from the API, the chance of this is approximately `99%`"""
+    response: Mapping[str, Any] = await request("GET", "/status.js", base="https://tankionline.com/s")
+    return StableServerStatus.from_json(response)

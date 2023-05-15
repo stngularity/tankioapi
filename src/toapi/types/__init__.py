@@ -10,5 +10,6 @@ from .game_object import *
 from .mode import *
 from .rank import *
 from .rating import *
+from .status import *
 from .top import *
 from .user import *

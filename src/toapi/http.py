@@ -6,7 +6,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."""
 
-from typing import Any, Final, Mapping
+from typing import Any, Final, Mapping, Optional
 from aiohttp import ClientSession, ClientResponse
 
 try:
@@ -19,7 +19,7 @@ __all__ = ("request", "request_bytes")
 
 _BASE: Final[str] = "https://ratings.tankionline.com/api/eu"
 
-async def request(method: str, endpoint: str) -> Mapping[str, Any]:
+async def request(method: str, endpoint: str, *, base: Optional[str] = None) -> Mapping[str, Any]:
     """Mapping[:class:`str`, :class:`Any`]: Makes a request to API of this game
     
     Parameters
@@ -28,9 +28,13 @@ async def request(method: str, endpoint: str) -> Mapping[str, Any]:
         The method of the request. For example, `GET`
         
     endpoint: :class:`str`
-        The endpoint of the request"""
+        The endpoint of the request
+        
+    base: Optional[:class:`str`]
+        The base of request URL. If specified `None`, then uses
+        `https://ratings.tankionline.com/api/eu`. By default, `None`"""
     async with ClientSession() as session:
-        response: ClientResponse = await session.request(method, _BASE+endpoint)
+        response: ClientResponse = await session.request(method, (base or _BASE)+endpoint)
         return jsonlib.loads(await response.text())
 
 
