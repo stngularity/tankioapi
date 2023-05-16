@@ -1,6 +1,7 @@
 """The example of working with users information"""
 
 import asyncio
+
 from toapi import User, get_user
 
 

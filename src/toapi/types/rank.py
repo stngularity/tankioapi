@@ -8,6 +8,7 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 from dataclasses import dataclass
 from typing import Union
+
 from ..data import get_rank_name
 
 __all__ = ("Rank",)

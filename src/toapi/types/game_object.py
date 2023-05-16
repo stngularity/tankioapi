@@ -8,8 +8,8 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 # pylint: disable=C0103
 
-from datetime import timedelta as td
 from dataclasses import dataclass
+from datetime import timedelta as td
 from typing import Any, List, Mapping, Optional, Type
 
 from ..http import request_bytes

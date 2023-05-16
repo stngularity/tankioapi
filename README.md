@@ -18,7 +18,7 @@ As mentioned earlier, this project is created just to exist. And so, the module 
 - Fully `async`/`await`
 - Getting top of players
 - Getting information of any player by him name
-- Getting status of stable server ` Maybe deprecated `
+- Getting status of stable server `Maybe deprecated`
 
 ## Installing
 **[Python 3.8](https://www.python.org/downloads/) or higher is required**

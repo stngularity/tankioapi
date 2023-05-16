@@ -6,13 +6,13 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."""
 
-from typing import Any, Mapping
+from typing import Any, List, Mapping
 
-from .types import TopLists, User, StableServerStatus
 from .errors import TankiOnlineException, UserNotFoundError
 from .http import request
+from .types import StableServerStatus, TestServerStatus, TopLists, User
 
-__all__ = ("get_tops", "get_user")
+__all__ = ("get_tops", "get_user", "get_status", "get_test_status")
 
 
 async def get_tops() -> TopLists:
@@ -61,3 +61,15 @@ async def get_status() -> StableServerStatus:
     response from the API, the chance of this is approximately `99%`"""
     response: Mapping[str, Any] = await request("GET", "/status.js", base="https://tankionline.com/s")
     return StableServerStatus.from_json(response)
+
+async def get_test_status() -> List[TestServerStatus]:
+    """List[:class:`TestServerStatus`]: Gets the status of test game servers"""
+    response: List[Mapping[str, Any]] = await request("GET", "/public_test", base="https://test.tankionline.com")
+
+    output: List[TestServerStatus] = []
+    for server in response:
+        base: str = f"https://balancer.{server['Domain']}"
+        nodes: Mapping[str, Mapping[str, Any]] = (await request("GET", "/balancer", base=base))["nodes"]
+        output.append(TestServerStatus.from_json(server, nodes))
+
+    return output

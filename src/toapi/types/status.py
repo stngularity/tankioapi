@@ -7,9 +7,12 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."""
 
 from dataclasses import dataclass
+from locale import getlocale
 from typing import Any, List, Mapping, Optional, Tuple, Type
 
-__all__ = ("StableServerStatus", "StableServerNode")
+from ..data import build_test_url
+
+__all__ = ("StableServerStatus", "TestServerStatus", "ServerNode")
 
 
 @dataclass
@@ -27,15 +30,15 @@ class StableServerStatus:
     supported_android: Tuple[:class:`int`, ...]
         The tuple with min and max supported Android versions
         
-    nodes: List[:class:`StableServerNode`]
+    nodes: List[:class:`ServerNode`]
         The list with nodes of the server"""
 
     apk_link: Optional[str]
     supported_android: Tuple[int, ...]
-    nodes: List["StableServerNode"]
+    nodes: List["ServerNode"]
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(apk_link={self.apk_link}; {len(self.nodes)} nodes)"
+        return f"{self.__class__.__name__}(apk_link={self.apk_link!r}; {len(self.nodes)} nodes)"
 
     def __str__(self) -> str:
         return f"{len(self.nodes)} nodes"
@@ -54,15 +57,78 @@ class StableServerStatus:
         self = cls.__new__(cls)
         self.apk_link = data["linkForDownloadAPK"] or None
         self.supported_android = (data["minSupportedAndroidVersion"], data["maxSupportedAndroidVersion"])
-        self.nodes = [StableServerNode.from_json(v, name=k) for k, v in data["nodes"].items()]
+        self.nodes = [ServerNode.from_json(v, name=k) for k, v in data["nodes"].items()]
         return self
 
+
 @dataclass
-class StableServerNode:
-    """The dataclass for nodes of stable Tanki Online server
+class TestServerStatus:
+    """The dataclass for test Tanki Online server
     
-    Maybe deprecated. I don't know this. Judging by the content of the
-    response from the API, the chance of this is approximately `99%`
+    Attributes
+    ----------
+    release: :class:`str`
+        The name of this test server
+        
+    domain: :class:`str`
+        The domain of test server
+
+    user_count: :class:`str`
+        The count of the users at test server
+        
+    nodes: List[:class:`ServerNode`]
+        The array with nodes of the server"""
+
+    release: str
+    domain: str
+    user_count: int
+    nodes: List["ServerNode"]
+
+    @property
+    def html_url(self) -> str:
+        """:class:`str`: The url to HTML5 version of test server"""
+        return build_test_url("html", domain=self.domain)
+
+    @property
+    def flash_url(self) -> str:
+        """:class:`str`: The url to Flash version of test server"""
+        return build_test_url("flash", domain=self.domain, lang=("ru" if getlocale()[0] == "Russian_Russia" else "en"))
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(release={self.release!r}, domain={self.domain!r}; {len(self.nodes)} nodes)"
+
+    def __str__(self) -> str:
+        return self.release
+
+    def __hash__(self) -> int:
+        return hash(self.release)
+
+    @classmethod
+    def from_json(
+        cls: Type["TestServerStatus"],
+        data: Mapping[str, Any],
+        nodes: Mapping[str, Mapping[str, Any]]
+    ) -> "TestServerStatus":
+        """:class:`TestServerStatus`: Converts JSON data to :class:`TestServerStatus`
+        
+        Parameters
+        ----------
+        data: Mapping[:class:`str`, :class:`Any`]
+            The JSON data
+            
+        nodes: Mapping[:class:`str`, Mapping[:class:`str`, :class:`Any`]]
+            The array with nodes of test server"""
+        self = cls.__new__(cls)
+        self.release = data["Release"]
+        self.domain = data["Domain"]
+        self.user_count = data["UserCount"]
+        self.nodes = [ServerNode.from_json(v, name=k) for k, v in nodes.items()]
+        return self
+
+
+@dataclass
+class ServerNode:
+    """The dataclass for nodes of Tanki Online servers
     
     Attributes
     ----------
@@ -100,7 +166,7 @@ class StableServerNode:
     partners: Mapping[str, Any]
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(name=\"{self.name}\" host=\"{self.host}\")"
+        return f"{self.__class__.__name__}(name={self.name!r} host={self.host!r})"
 
     def __str__(self) -> str:
         return self.name
@@ -109,8 +175,8 @@ class StableServerNode:
         return hash(self.name)
 
     @classmethod
-    def from_json(cls: Type["StableServerNode"], data: Mapping[str, Any], *, name: str) -> "StableServerNode":
-        """:class:`StableServerNode`: Converts JSON data to :class:`StableServerNode`
+    def from_json(cls: Type["ServerNode"], data: Mapping[str, Any], *, name: str) -> "ServerNode":
+        """:class:`ServerNode`: Converts JSON data to :class:`ServerNode`
         
         Parameters
         ----------

@@ -1,6 +1,7 @@
 """The example of working with tops"""
 
 import asyncio
+
 from toapi import Top, TopLists, get_tops
 
 
