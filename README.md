@@ -19,6 +19,7 @@ As mentioned earlier, this project is created just to exist. And so, the module 
 - Getting top of players
 - Getting information of any player by him name
 - Getting status of stable server `Maybe deprecated`
+- Getting status of test servers
 
 ## Installing
 **[Python 3.8](https://www.python.org/downloads/) or higher is required**
