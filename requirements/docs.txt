@@ -1,3 +1,4 @@
 sphinx
 sphinxawesome-theme
 bs4
+myst-parser

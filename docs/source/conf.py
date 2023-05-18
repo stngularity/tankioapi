@@ -25,6 +25,7 @@ autodoc_member_order = "bysource"
 templates_path = ["templates"]
 exclude_patterns = []
 source_suffix = {".rst": "restructuredtext", ".md": "markdown"}
+master_doc = "index"
 
 # -- Options for HTML output -------------------------------------------------
 html_theme = "sphinxawesome_theme"
