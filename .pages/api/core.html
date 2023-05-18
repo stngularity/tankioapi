@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html :class="{'dark': darkMode === 'dark' || (darkMode === 'system' &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches)}" class="scroll-smooth" lang="en" x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }" x-init="$watch('darkMode', val =&gt; localStorage.setItem('darkMode', val))">
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="white" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="black" metia="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="Docutils 0.19: https://docutils.sourceforge.io/" name="generator"/>
+<title>Core API | tankioapi</title>
+<meta content="Core API | tankioapi" property="og:title"/>
+<meta content="Core API | tankioapi" name="twitter:title"/>
+<link href="../_static/pygments.css" rel="stylesheet"/>
+<link href="../_static/theme.a16405b310edf0713aee.css" rel="stylesheet"/>
+<link href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" rel="stylesheet"/>
+<link href="../_static/css/main.css" rel="stylesheet"/>
+<link href="../_static/awesome-sphinx-design.f3507627e0af8330cfa7.css" rel="stylesheet"/>
+<link href="../search.html" rel="search" title="Search"/>
+<link href="../genindex.html" rel="index" title="Index"/>
+<link href="types.html" rel="next" title="Types"/>
+<link href="api.html" rel="prev" title="API Reference"/>
+<script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+<script src="../_static/doctools.js"></script>
+<script src="../_static/sphinx_highlight.js"></script>
+<script src="../_static/design-tabs.js"></script>
+<script defer="" src="../_static/theme.ad172c0f1249198ea036.js"></script>
+</head>
+<body :class="{ 'overflow-hidden': showSidebar }" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false }">
+<div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
+      Skip to content
+    </a><header class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+<div class="hidden mr-4 md:flex">
+<a class="flex items-center mr-6" href="../index.html"><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">tankioapi</span>
+</a></div><button @click="showSidebar = true" class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden" type="button">
+<svg aria-hidden="true" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z"></path>
+</svg>
+<span class="sr-only">Toggle navigation menu</span>
+</button>
+<div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+<div class="flex-1 w-full md:w-auto md:flex-none">
+<form @keydown.k.window.meta="$refs.search.focus()" action="../search.html" class="relative flex items-center group" id="searchbox" method="get">
+<input aria-label="Search the docs" class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" id="search-input" name="q" placeholder="Search ..." type="search" x-ref="search"/>
+<kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+<span class="text-xs">⌘</span>
+      K
+    </kbd>
+</form>
+</div>
+<nav class="flex items-center space-x-1">
+<a href="https://github.com/stngularity/tankioapi/" rel="noopener nofollow" title="Visit GitHub">
+<div class="inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md disabled:opacity-50 disabled:pointer-events-none hover:bg-accent hover:text-accent-foreground h-9 w-9">
+<svg fill="currentColor" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z" fill-rule="evenodd"></path></svg>
+</div>
+</a>
+<button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'" class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button">
+<svg class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z"></path>
+</svg>
+<svg class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z"></path>
+</svg>
+</button>
+</nav>
+</div>
+</div>
+</header>
+<div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }" class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky" id="left-sidebar">
+<a class="!justify-start text-sm md:!hidden bg-background" href="../index.html"><span class="font-bold text-clip whitespace-nowrap">tankioapi</span>
+</a>
+<div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+<div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="../index.html">Overview</a>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../usage.html">Usage</a>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="api.html">Overview</a>
+</li>
+<li class="toctree-l1 current">
+<a class="reference internal current" href="#">Core API</a>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="types.html">Types</a>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="exceptions.html">Exceptions</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<button @click="showSidebar = false" class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100" type="button">
+<svg class="h-4 w-4" fill="currentColor" height="24" stroke="none" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z"></path>
+</svg>
+</button>
+</aside>
+<main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs" class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+<a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground" href="../index.html">
+<span class="hidden md:inline">tankioapi</span>
+<svg aria-label="Home" class="md:hidden" fill="currentColor" height="18" stroke="none" viewbox="0 96 960 960" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
+</svg>
+</a>
+<div class="mr-1">/</div><a class="hover:text-foreground overflow-hidden text-ellipsis whitespace-nowrap" href="api.html">API Reference</a>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">Core API</span>
+</nav>
+<div id="content" role="main">
+<section id="core-api">
+<h1>Core API<a class="headerlink" href="#core-api" title="Permalink to this heading">¶</a></h1>
+<p>The basic functions of the library are described here.</p>
+<section id="get-tops">
+<h2><code class="docutils literal notranslate"><span class="pre">get_tops</span></code><a class="headerlink" href="#get-tops" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#get-tops'">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="toapi.get_tops">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">toapi.</span></span><span class="sig-name descname"><span class="pre">get_tops</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="types.html#toapi.TopLists" title="toapi.types.top.TopLists"><span class="pre">TopLists</span></a></span></span><a class="headerlink" href="#toapi.get_tops" title="Permalink to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#toapi.get_tops'">¶</a></dt>
+<dd><p>List[<a class="reference internal" href="types.html#toapi.Top" title="toapi.Top"><code class="xref py py-class docutils literal notranslate"><span class="pre">Top</span></code></a>]: Gets list with tops of players</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="exceptions.html#toapi.TankiOnlineException" title="toapi.TankiOnlineException"><strong>TankiOnlineException</strong></a> – If it is failed to get the tops of the players</p>
+</dd>
+</dl>
+</dd></dl>
+<p>Gets and returns the tops of players.</p>
+<ul class="simple">
+<li><p>Top by <strong>count of earned by crystals:</strong> <code class="docutils literal notranslate"><span class="pre">TopLists.crystals</span></code></p></li>
+<li><p>Top by <strong>efficiency:</strong> <code class="docutils literal notranslate"><span class="pre">TopLists.efficiency</span></code></p></li>
+<li><p>Top by <strong>count of caught golds:</strong> <code class="docutils literal notranslate"><span class="pre">TopLists.golds</span></code></p></li>
+<li><p>Top by <strong>score:</strong> <code class="docutils literal notranslate"><span class="pre">TopLists.score</span></code></p></li>
+</ul>
+<h6>Usage</h6>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">tops</span><span class="p">:</span> <span class="n">TopLists</span> <span class="o">=</span> <span class="k">await</span> <span class="n">toapi</span><span class="o">.</span><span class="n">get_tops</span><span class="p">()</span>
+</pre></div>
+</div>
+<h6>Example</h6>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"/>
+<label class="sd-tab-label" for="sd-tab-item-0">
+Input</label><div class="sd-tab-content docutils">
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">toapi</span> <span class="kn">import</span> <span class="n">Top</span><span class="p">,</span> <span class="n">TopLists</span><span class="p">,</span> <span class="n">get_tops</span>
+
+<span class="n">tops</span><span class="p">:</span> <span class="n">TopLists</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">get_tops</span><span class="p">())</span>
+<span class="n">efficiency_top</span><span class="p">:</span> <span class="n">Top</span> <span class="o">=</span> <span class="n">tops</span><span class="o">.</span><span class="n">efficiency</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"----- Efficiency top -----"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">number</span><span class="p">,</span> <span class="n">user</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">efficiency_top</span><span class="o">.</span><span class="n">users</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"#</span><span class="si">{</span><span class="n">number</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">   </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">top_value</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://github.com/stngularity/tankioapi/blob/main/examples/top.py">Full example located at GitHub.</a></p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"/>
+<label class="sd-tab-label" for="sd-tab-item-1">
+Output</label><div class="sd-tab-content docutils">
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1">#1   TOP1USERNAME (TOP1VALUE)</span>
+<span class="c1">#2   TOP2USERNAME (TOP2VALUE)</span>
+<span class="c1">#3   TOP3USERNAME (TOP3VALUE)</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="get-user">
+<h2><code class="docutils literal notranslate"><span class="pre">get_user</span></code><a class="headerlink" href="#get-user" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#get-user'">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="toapi.get_user">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">toapi.</span></span><span class="sig-name descname"><span class="pre">get_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lang</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'en'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="types.html#toapi.User" title="toapi.types.user.User"><span class="pre">User</span></a></span></span><a class="headerlink" href="#toapi.get_user" title="Permalink to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#toapi.get_user'">¶</a></dt>
+<dd><p><a class="reference internal" href="types.html#toapi.User" title="toapi.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a>: Tries to find user by the name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The name of the user</p></li>
+<li><p><strong>lang</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The language of API response. By default, <cite>en</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#toapi.UserNotFoundError" title="toapi.UserNotFoundError"><strong>UserNotFoundError</strong></a> – If user with specified <a href="#id1"><span class="problematic" id="id2">:param:`name`</span></a> isn’t found. This error is
+    possible if a player with such a name doesn’t exist, or he
+    disables the ability to receive information about him through
+    the API</p>
+</dd>
+</dl>
+</dd></dl>
+<p>Tries to find user by specified name.</p>
+<h6>Usage</h6>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_user</span><span class="p">(</span><span class="s2">"USERNAME HERE"</span><span class="p">)</span>
+
+<span class="c1"># You can specify the language of API response,</span>
+<span class="c1"># for doing this use "lang" parameter.</span>
+<span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_user</span><span class="p">(</span><span class="s2">"USERNAME HERE"</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s2">"ru"</span><span class="p">)</span>
+</pre></div>
+</div>
+<h6>Example</h6>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"/>
+<label class="sd-tab-label" for="sd-tab-item-2">
+Input</label><div class="sd-tab-content docutils">
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">toapi</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">get_user</span>
+
+<span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">get_user</span><span class="p">(</span><span class="s2">"sty"</span><span class="p">))</span>
+<span class="c1"># and You can specify language</span>
+<span class="c1"># user: User = asyncio.run(get_user("sty", lang="ru"))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Name: </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">rank</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Rank: </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">score</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">score_next</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">score</span><span class="o">/</span><span class="n">user</span><span class="o">.</span><span class="n">score_next</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Has premium: </span><span class="si">{</span><span class="s1">'Yes'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">premium</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'No'</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"KD: </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">kills</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">deaths</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">kd_ratio</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Caught golds: </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">caught_golds</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Crystals: </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">crystals</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"GS: </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">gear_score</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://github.com/stngularity/tankioapi/blob/main/examples/user_info.py">Full example located at GitHub.</a></p>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio"/>
+<label class="sd-tab-label" for="sd-tab-item-3">
+Output</label><div class="sd-tab-content docutils">
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span><span class="p">:</span> <span class="n">sty</span>
+<span class="n">Rank</span><span class="p">:</span> <span class="n">Warrant</span> <span class="n">Officer</span> <span class="mi">1</span> <span class="p">(</span><span class="mi">57010</span><span class="o">/</span><span class="mi">76000</span> <span class="mi">75</span><span class="o">%</span><span class="p">)</span>
+<span class="n">Has</span> <span class="n">premium</span><span class="p">:</span> <span class="n">No</span>
+
+<span class="n">KD</span><span class="p">:</span> <span class="mi">611</span><span class="o">/</span><span class="mi">398</span> <span class="p">(</span><span class="mf">1.54</span><span class="p">)</span>
+<span class="n">Caught</span> <span class="n">golds</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Crystals</span><span class="p">:</span> <span class="mi">17416</span>
+<span class="n">GS</span><span class="p">:</span> <span class="mi">3238</span>
+</pre></div>
+</div>
+<p>This data is correct as of May 18, 2023.</p>
+</div>
+</div>
+</section>
+<section id="get-status">
+<h2><code class="docutils literal notranslate"><span class="pre">get_status</span></code><a class="headerlink" href="#get-status" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#get-status'">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="toapi.get_status">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">toapi.</span></span><span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="types.html#toapi.StableServerStatus" title="toapi.types.status.StableServerStatus"><span class="pre">StableServerStatus</span></a></span></span><a class="headerlink" href="#toapi.get_status" title="Permalink to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#toapi.get_status'">¶</a></dt>
+<dd><p><a class="reference internal" href="types.html#toapi.StableServerStatus" title="toapi.StableServerStatus"><code class="xref py py-class docutils literal notranslate"><span class="pre">StableServerStatus</span></code></a>: Gets the status of stable game server.</p>
+<p>Maybe deprecated. I don’t know this. Judging by the content of the
+response from the API, the chance of this is approximately <cite>99%</cite></p>
+</dd></dl>
+<p>Gets and returns the status of stable game server.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Maybe deprecated. I don’t know this. Judging by the content of the response from the
+API, the chance of this is approximately <strong>99%</strong></p>
+</div>
+<h6>Usage</h6>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="p">:</span> <span class="n">StableServerStatus</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_status</span><span class="p">()</span>
+</pre></div>
+</div>
+<h6>Example</h6>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio"/>
+<label class="sd-tab-label" for="sd-tab-item-4">
+Input</label><div class="sd-tab-content docutils">
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">toapi</span> <span class="kn">import</span> <span class="n">StableServerStatus</span><span class="p">,</span> <span class="n">get_status</span>
+
+<span class="n">status</span><span class="p">:</span> <span class="n">StableServerStatus</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">get_status</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> nodes"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio"/>
+<label class="sd-tab-label" for="sd-tab-item-5">
+Output</label><div class="sd-tab-content docutils">
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="mi">8</span> <span class="n">nodes</span>
+</pre></div>
+</div>
+<p>This data is correct as of May 18, 2023.</p>
+</div>
+</div>
+</section>
+<section id="get-test-status">
+<h2><code class="docutils literal notranslate"><span class="pre">get_test_status</span></code><a class="headerlink" href="#get-test-status" title="Permalink to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#get-test-status'">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="toapi.get_test_status">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">toapi.</span></span><span class="sig-name descname"><span class="pre">get_test_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="types.html#toapi.TestServerStatus" title="toapi.types.status.TestServerStatus"><span class="pre">TestServerStatus</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#toapi.get_test_status" title="Permalink to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#toapi.get_test_status'">¶</a></dt>
+<dd><p>List[<a class="reference internal" href="types.html#toapi.TestServerStatus" title="toapi.TestServerStatus"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestServerStatus</span></code></a>]: Gets the status of test game servers</p>
+</dd></dl>
+<p>Gets and returns the status of test game servers</p>
+<h6>Usage</h6>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">servers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TestServerStatus</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_test_status</span><span class="p">()</span>
+</pre></div>
+</div>
+<h6>Example</h6>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio"/>
+<label class="sd-tab-label" for="sd-tab-item-6">
+Input</label><div class="sd-tab-content docutils">
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">toapi</span> <span class="kn">import</span> <span class="n">TestServerStatus</span><span class="p">,</span> <span class="n">get_test_status</span>
+
+<span class="n">servers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TestServerStatus</span><span class="p">]</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">get_test_status</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">servers</span><span class="p">)</span><span class="si">}</span><span class="s2"> test servers</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">servers</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">server</span><span class="o">.</span><span class="n">release</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">server</span><span class="o">.</span><span class="n">domain</span><span class="si">}</span><span class="s2">; </span><span class="si">{</span><span class="n">server</span><span class="o">.</span><span class="n">user_count</span><span class="si">}</span><span class="s2"> users and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> nodes"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://github.com/stngularity/tankioapi/blob/main/examples/test_server_info.py">Full example located at GitHub.</a></p>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio"/>
+<label class="sd-tab-label" for="sd-tab-item-7">
+Output</label><div class="sd-tab-content docutils">
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">Total</span> <span class="mi">3</span> <span class="n">test</span> <span class="n">servers</span>
+
+<span class="n">deploy1</span><span class="o">-</span><span class="n">pubto</span><span class="p">:</span> <span class="n">public</span><span class="o">-</span><span class="n">deploy1</span><span class="o">.</span><span class="n">test</span><span class="o">-</span><span class="n">eu</span><span class="o">.</span><span class="n">tankionline</span><span class="o">.</span><span class="n">com</span><span class="p">;</span> <span class="mi">73</span> <span class="n">users</span> <span class="ow">and</span> <span class="mi">2</span> <span class="n">nodes</span>
+<span class="n">deploy4</span><span class="o">-</span><span class="n">pubto</span><span class="p">:</span> <span class="n">public</span><span class="o">-</span><span class="n">deploy4</span><span class="o">.</span><span class="n">test</span><span class="o">-</span><span class="n">eu</span><span class="o">.</span><span class="n">tankionline</span><span class="o">.</span><span class="n">com</span><span class="p">;</span> <span class="mi">4</span> <span class="n">users</span> <span class="ow">and</span> <span class="mi">2</span> <span class="n">nodes</span> 
+<span class="n">deploy6</span><span class="o">-</span><span class="n">pubto</span><span class="p">:</span> <span class="n">public</span><span class="o">-</span><span class="n">deploy6</span><span class="o">.</span><span class="n">test</span><span class="o">-</span><span class="n">eu</span><span class="o">.</span><span class="n">tankionline</span><span class="o">.</span><span class="n">com</span><span class="p">;</span> <span class="mi">1</span> <span class="n">users</span> <span class="ow">and</span> <span class="mi">2</span> <span class="n">nodes</span> 
+</pre></div>
+</div>
+<p>This data is correct as of May 18, 2023.</p>
+</div>
+</div>
+</section>
+</section>
+</div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
+<div class="sticky top-16 -mt-10 max-h-[calc(var(--vh)-4rem)] overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
+<ul>
+<li><a :data-current="activeSection === '#get-tops'" class="reference internal" href="#get-tops"><code class="docutils literal notranslate"><span class="pre">get_tops</span></code></a><ul>
+<li><a :data-current="activeSection === '#toapi.get_tops'" class="reference internal" href="#toapi.get_tops"><code class="docutils literal notranslate"><span class="pre">get_tops()</span></code></a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#get-user'" class="reference internal" href="#get-user"><code class="docutils literal notranslate"><span class="pre">get_user</span></code></a><ul>
+<li><a :data-current="activeSection === '#toapi.get_user'" class="reference internal" href="#toapi.get_user"><code class="docutils literal notranslate"><span class="pre">get_user()</span></code></a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#get-status'" class="reference internal" href="#get-status"><code class="docutils literal notranslate"><span class="pre">get_status</span></code></a><ul>
+<li><a :data-current="activeSection === '#toapi.get_status'" class="reference internal" href="#toapi.get_status"><code class="docutils literal notranslate"><span class="pre">get_status()</span></code></a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#get-test-status'" class="reference internal" href="#get-test-status"><code class="docutils literal notranslate"><span class="pre">get_test_status</span></code></a><ul>
+<li><a :data-current="activeSection === '#toapi.get_test_status'" class="reference internal" href="#toapi.get_test_status"><code class="docutils literal notranslate"><span class="pre">get_test_status()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</aside>
+</main>
+</div>
+</div><footer class="py-6 border-t border-border md:py-0">
+<div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+<div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2023-present stngularity Built with <a class="font-medium underline underline-offset-4" href="https://www.sphinx-doc.org" rel="noreferrer">Sphinx 6.2.1</a></p>
+</div>
+</div>
+</footer>
+</div>
+</body>
+</html>
