@@ -41,4 +41,5 @@ html_theme_options = {
 }
 
 html_css_files = ["css/main.css"]
+html_favicon = "static/images/favicon.png"
 html_sidebars = {"**": ["sidebar_main_nav_links.html", "global_toc.html"]}
