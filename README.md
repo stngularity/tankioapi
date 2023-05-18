@@ -1,11 +1,11 @@
 <p align=center>
-    <img src="https://img.shields.io/badge/-stngularity's%20work-%2346df11">
-    <img src="https://img.shields.io/pypi/v/tankioapi?color=%2346df11&label=Version">
-    <img src="https://img.shields.io/pypi/dd/tankioapi?color=%2346df11&label=Downloads">
+    <a href="https://github.com/stngularity"><img src="https://img.shields.io/badge/-stngularity's%20project-%2346df11"></a>
+    <a href="https://pypi.org/project/tankioapi/"><img src="https://img.shields.io/pypi/v/tankioapi?color=%2346df11&label=Version"></a>
+    <a href="https://pypi.org/project/tankioapi/"><img src="https://img.shields.io/pypi/dd/tankioapi?color=%2346df11&label=Downloads"></a>
 </p>
 <p align=center>
-    <img src="https://img.shields.io/github/issues/stngularity/tankioapi?color=%2346df11&label=Issues">
-    <img src="https://img.shields.io/github/license/stngularity/tankioapi?color=%2346df11&label=License">
+    <a href="https://github.com/stngularity/tankioapi/issues"><img src="https://img.shields.io/github/issues/stngularity/tankioapi?color=%2346df11&label=Issues"></a>
+    <a href="https://github.com/stngularity/tankioapi"><img src="https://img.shields.io/github/license/stngularity/tankioapi?color=%2346df11&label=License"></a>
 </p>
 
 ## Notification
@@ -57,7 +57,6 @@ Here are examples of some of the features of the library. More examples in [`exa
 import asyncio
 from toapi import Top, TopLists, get_tops
 
-
 tops: TopLists = asyncio.run(get_tops())
 efficiency_top: Top = tops.efficiency
 print("----- Efficiency top -----")
@@ -70,9 +69,9 @@ for number, user in enumerate(efficiency_top.users):
 import asyncio
 from toapi import User, get_user
 
-user = asyncio.run(get_user("sty"))
+user: User = asyncio.run(get_user("sty"))
 # and You can specify language
-# user = asyncio.run(get_user("sty", lang="ru"))
+# user: User = asyncio.run(get_user("sty", lang="ru"))
 
 print(f"Name: {user.name}")
 rank: str = user.rank.name.title()
@@ -87,3 +86,7 @@ print(f"GS: {user.gear_score}")
 
 ## License
 This project is distributed under the `MIT` license. You can learn more from the [**LICENSE**](/LICENSE) file.
+
+```
+Made with ❤ and 🍵 by stngularity for everyone
+```

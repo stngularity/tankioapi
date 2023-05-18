@@ -1,0 +1,18 @@
+<nav class="table w-full min-w-full my-6 lg:my-8">
+    <ul>
+        {% for link in [("index", "Overview"), ("usage", "Usage")] %}
+            <li class="toctree-l1{% if pagename == link[0] %} current{% endif %}">
+                <a class="reference internal{% if pagename == link[0] %} current{% endif %}" href="{{ pathto(link[0]) }}">{{ link[1] }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+    <ul>
+        {% for link in [("api/api", "Overview"), ("api/core", "Core API"), ("api/types", "Types"), ("api/exceptions", "Exceptions")] %}
+            <li class="toctree-l1{% if pagename == link[0] %} current{% endif %}">
+                <a class="reference internal{% if pagename == link[0] %} current{% endif %}" href="{{ pathto(link[0]) }}">{{ link[1] }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
+  

@@ -22,10 +22,7 @@ class Rank:
     ----------
     number: :class:`int`
         The player's rank as number. Has the value from `1` to `31+N`,
-        where `N` is :attr:`legend_number`
-        
-    legend_number: :class:`int`
-        Only if player has `Legend` rank! The number of `Legend` rank"""
+        where `N` is :attr:`legend_number`"""
 
     number: int
 

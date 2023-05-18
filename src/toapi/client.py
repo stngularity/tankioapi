@@ -62,6 +62,7 @@ async def get_status() -> StableServerStatus:
     response: Mapping[str, Any] = await request("GET", "/status.js", base="https://tankionline.com/s")
     return StableServerStatus.from_json(response)
 
+
 async def get_test_status() -> List[TestServerStatus]:
     """List[:class:`TestServerStatus`]: Gets the status of test game servers"""
     response: List[Mapping[str, Any]] = await request("GET", "/public_test", base="https://test.tankionline.com")
