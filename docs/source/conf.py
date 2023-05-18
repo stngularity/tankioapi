@@ -24,7 +24,7 @@ autodoc_member_order = "bysource"
 
 templates_path = ["templates"]
 exclude_patterns = []
-source_suffix = {".rst": "restructuredtext", ".md": "markdown"}
+source_suffix = [".md"]
 master_doc = "index"
 
 # -- Options for HTML output -------------------------------------------------
