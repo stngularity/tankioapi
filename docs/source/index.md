@@ -1,10 +1,3 @@
-```{eval-rst}
-.. meta::
-   :description lang=en: tankioapi is a Python library for working with the Tanki Online game API
-   :description lang=ru: tankioapi - это Python библиотека для работы с API игры Tanki Online.
-   :keywords: python, api, wrapper, library, tanki-online
-```
-
 # Welcome!
 **tankioapi** is a [Python](https://python.org) written wrapper for the
 [**Tanki Online**](https://tankionline.com/) game API. The module itself is needed to

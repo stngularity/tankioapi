@@ -1,5 +1,4 @@
 sphinx
 sphinxawesome-theme --pre
-bs4
 myst-parser
 sphinx-design

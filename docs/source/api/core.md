@@ -59,11 +59,11 @@ Tries to find user by specified name.
 <h6>Usage</h6>
 
 ```py
-user: User = await get_user("USERNAME HERE")
+user: User = await toapi.get_user("USERNAME HERE")
 
 # You can specify the language of API response,
 # for doing this use "lang" parameter.
-user: User = await get_user("USERNAME HERE", lang="ru")
+user: User = await toapi.get_user("USERNAME HERE", lang="ru")
 ```
 
 <h6>Example</h6>
@@ -123,7 +123,7 @@ API, the chance of this is approximately **99%**
 <h6>Usage</h6>
 
 ```py
-status: StableServerStatus = await get_status()
+status: StableServerStatus = await toapi.get_status()
 ```
 
 <h6>Example</h6>
@@ -158,7 +158,7 @@ Gets and returns the status of test game servers
 <h6>Usage</h6>
 
 ```py
-servers: List[TestServerStatus] = await get_test_status()
+servers: List[TestServerStatus] = await toapi.get_test_status()
 ```
 
 <h6>Example</h6>
