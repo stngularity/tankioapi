@@ -38,7 +38,7 @@ jobs:
         shell: bash
         run: |
           cd docs
-          sphinx-build -b html -j auto -a source build/html
+          sphinx-build -M html source build/html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
