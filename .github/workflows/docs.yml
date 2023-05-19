@@ -33,6 +33,7 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           pip install .[speedup]
           pip install -U -r requirements/docs.txt
+          pip install -U sphinxawesome-theme --pre
       
       - name: Build
         shell: bash

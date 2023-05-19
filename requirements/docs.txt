@@ -1,4 +1,3 @@
 sphinx
-sphinxawesome-theme --pre
 myst-parser
 sphinx-design
