@@ -47,8 +47,9 @@ if __name__ == "__main__":
         long_description=README,
         long_description_content_type="text/markdown",
 
-        url="https://github.com/stngularity/tankioapi.py",
+        url="https://github.com/stngularity/tankioapi",
         project_urls={
+            "Documentation": "https://stngularity.github.io/tankioapi",
             "Homepage": "https://github.com/stngularity/tankioapi",
             "Source Code": "https://github.com/stngularity/tankioapi",
             "Changelog": "https://github.com/stngularity/tankioapi/blob/main/CHANGELOG.md",
@@ -68,6 +69,7 @@ if __name__ == "__main__":
             "Natural Language :: English",
             "Operating System :: OS Independent",
             "Programming Language :: Python",
+            "Programming Language :: Python :: 3",
             "Programming Language :: Python :: 3 :: Only",
             "Programming Language :: Python :: 3.8",
             "Programming Language :: Python :: 3.9",

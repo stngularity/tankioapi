@@ -29,10 +29,11 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage"    = "https://github.com/stngularity/tankioapi"
-"Source Code" = "https://github.com/stngularity/tankioapi"
-"Changelog"   = "https://github.com/stngularity/tankioapi/blob/main/CHANGELOG.md"
-"Bug Tracker" = "https://github.com/stngularity/tankioapi/issues"
+"Documentation" = "https://stngularity.github.io/tankioapi"
+"Homepage"      = "https://github.com/stngularity/tankioapi"
+"Source Code"   = "https://github.com/stngularity/tankioapi"
+"Changelog"     = "https://github.com/stngularity/tankioapi/blob/main/CHANGELOG.md"
+"Bug Tracker"   = "https://github.com/stngularity/tankioapi/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

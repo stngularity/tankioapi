@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from datetime import timedelta as td
 from typing import Any, List, Mapping, Optional, Type
 
-from ..http import request_bytes
+from ..http import request
 
 __all__ = ("GameObject", "SuppliesObject")
 
@@ -48,7 +48,7 @@ class BaseGameObject:
 
     async def read_image(self) -> bytes:
         """:class:`bytes`: Reads the image data of this object and returns it"""
-        return await request_bytes("GET", self.image)
+        return await request("GET", self.image, base="", bytes=True)
 
 
 @dataclass

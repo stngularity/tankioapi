@@ -1,3 +1,7 @@
+## 1.0.1 `Backend update`
+- `-` Removed `request_bytes` function
+    > Changed to `request(bytes=True)` function
+
 ## 1.0.0
 - `~` Rewrited use logic
     > Removed `TankiOnline` class. Now use function without this class
