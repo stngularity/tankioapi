@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel
-          pip install -U -r .[speedup]
+          pip install .[speedup]
           pip install -U -r requirements/docs.txt
       
       - name: Build
