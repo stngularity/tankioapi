@@ -38,12 +38,12 @@ jobs:
         shell: bash
         run: |
           cd docs
-          sphinx-build -M html source build/html
+          sphinx-build -M html source build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: "docs/build/html"
+          path: "./docs/build/html"
 
   deploy:
     runs-on: ubuntu-latest
