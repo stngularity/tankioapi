@@ -41,6 +41,7 @@ for number, user in enumerate(efficiency_top.users):
 :::{tab-item} Output
 
 ```py
+----- Efficiency top -----
 #1   TOP1USERNAME (TOP1VALUE)
 #2   TOP2USERNAME (TOP2VALUE)
 #3   TOP3USERNAME (TOP3VALUE)
