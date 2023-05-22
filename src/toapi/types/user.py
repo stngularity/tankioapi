@@ -7,7 +7,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."""
 
 from dataclasses import dataclass
-from typing import Any, Dict, List, Mapping, Type
+from typing import Any, Mapping, List, Mapping, Type
 
 from .game_object import GameObject, SuppliesObject
 from .mode import Mode
@@ -136,8 +136,8 @@ class User(PartialUser):
     modes_played: List[:class:`Mode`]
         The list of modes which the player is played at
         
-    mounted: Dict[:class:`str`, :class:`str`]
-        Dictionary where key is a single value from `armor`, `paint` and
+    mounted: Mapping[:class:`str`, :class:`str`]
+        Mappingionary where key is a single value from `armor`, `paint` and
         `weapon`, and value is an image URL with `.tnk` extension (renamed
         `.png`)
         
@@ -180,7 +180,7 @@ class User(PartialUser):
     gear_score: int
     hulls_played: List[GameObject]
     modes_played: List[Mode]
-    mounted: Dict[str, str]
+    mounted: Mapping[str, str]
     paints_played: List[GameObject]
     presents: List[Any]
     previous_rating: Ratings

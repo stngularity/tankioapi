@@ -7,7 +7,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."""
 
 from dataclasses import dataclass
-from typing import Any, Dict, Optional, Type
+from typing import Any, Mapping, Optional, Type
 
 __all__ = ("Rating", "Ratings")
 
@@ -62,12 +62,12 @@ class Ratings:
     score: Optional[Rating]
 
     @classmethod
-    def from_json(cls: Type["Ratings"], data: Dict[str, Any]) -> "Ratings":
+    def from_json(cls: Type["Ratings"], data: Mapping[str, Any]) -> "Ratings":
         """:class:`Ratings`: Converts JSON to :class:`Ratings`
         
         Parameters
         ----------
-        data: Dict[:class:`str`, :class:`Any`]
+        data: Mapping[:class:`str`, :class:`Any`]
             The original data of ratings"""
         self = cls.__new__(cls)
         self.crystals = Rating(**data["crystals"]) if data["crystals"] is not None else None

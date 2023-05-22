@@ -112,7 +112,7 @@ class GameObject(BaseGameObject):
         Parameters
         ----------
         list: List[Mapping[:class:`str`, :class:`Any`]]
-            The list with dictionaries"""
+            The list with Mappingionaries"""
         return [GameObject.from_json(x) for x in list]
 
 
