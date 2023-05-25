@@ -6,13 +6,15 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."""
 
+# pylint: disable=C0103
+
 from typing import Any, List, Mapping
 
 from .errors import TankiOnlineException, UserNotFoundError
 from .http import request
 from .types import Article, ESportListResponse, StableServerStatus, TestServerStatus, TopLists, User
 
-__all__ = ("get_tops", "get_user", "get_status", "get_test_status", "get_articles")
+__all__ = ("get_tops", "get_user", "get_status", "get_test_status", "get_articles", "get_article_info")
 
 
 async def get_tops() -> TopLists:
@@ -102,10 +104,30 @@ async def get_articles(*, count: int = 20, page: int = 1) -> ESportListResponse[
 
     endpoint: str = f"/articles?count={count}&page={page}"
     response: Mapping[str, Any] = await request("GET", endpoint, base="https://tankisport.com/api")
-
     if not response.get("success", False):
         raise TankiOnlineException("Failed to get articles")
 
     output: List[Article] = [Article.from_json(a) for a in response["data"]["articles"]]
     meta: Mapping[str, Any] = response["meta"]
     return ESportListResponse(output, page=page, last_page=meta["last_page"], per_page=count, total=meta["total"])
+
+
+async def get_article_info(id: int) -> Article:
+    """:class:`Article`: Tries to get information about article with specified ID
+    
+    Parameters
+    ----------
+    id: :class:`int`
+        ID of the article you want to get information about. For example, You can
+        specify ID of last article from response of :func:`get_articles` function
+    
+    Raises
+    ------
+    :class:`TankiOnlineException`
+        If the response from the API says that the operation wasn't successful"""
+    endpoint: str = f"/articles/show/{id}"
+    response: Mapping[str, Any] = await request("GET", endpoint, base="https://tankisport.com/api")
+    if not response.get("success", False):
+        raise TankiOnlineException(f"Failed to get info about article with {id} id")
+
+    return Article.from_json(response["data"])

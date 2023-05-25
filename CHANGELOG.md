@@ -1,3 +1,7 @@
+## 1.1.0a3
+- `+` Added the ability to receive information about any article
+    > Is `get_article_info` function
+
 ## 1.1.0a2
 - `+` Added the ability to receive articles from Tanki Sport
     > Is `get_articles` function
