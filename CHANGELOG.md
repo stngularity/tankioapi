@@ -1,3 +1,7 @@
+## 1.1.0a2
+- `+` Added the ability to receive articles from Tanki Sport
+    > Is `get_articles` function
+
 ## 1.0.1 `Backend update`
 - `-` Removed `request_bytes` function
     > Changed to `request(bytes=True)` function

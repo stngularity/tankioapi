@@ -10,9 +10,9 @@ from typing import Any, List, Mapping
 
 from .errors import TankiOnlineException, UserNotFoundError
 from .http import request
-from .types import StableServerStatus, TestServerStatus, TopLists, User
+from .types import Article, ESportListResponse, StableServerStatus, TestServerStatus, TopLists, User
 
-__all__ = ("get_tops", "get_user", "get_status", "get_test_status")
+__all__ = ("get_tops", "get_user", "get_status", "get_test_status", "get_articles")
 
 
 async def get_tops() -> TopLists:
@@ -21,7 +21,7 @@ async def get_tops() -> TopLists:
     Raises
     ------
     :class:`TankiOnlineException`
-        If it is failed to get the tops of the players"""
+        If the response from the API says that the operation wasn't successful"""
     response: Mapping[str, Any] = await request("GET", "/top")
     if response["responseType"] != "OK":
         raise TankiOnlineException("Failed to get the tops")
@@ -74,3 +74,38 @@ async def get_test_status() -> List[TestServerStatus]:
         output.append(TestServerStatus.from_json(server, nodes))
 
     return output
+
+
+async def get_articles(*, count: int = 20, page: int = 1) -> ESportListResponse[Article]:
+    """:class:`ESportListResponse`[:class:`Article`]: Tries to get list of eSport articles
+    
+    Parameters
+    ----------
+    count: :class:`int`
+        The number of articles per page. Must be more than zero. By default, `20`
+
+    page: :class:`int`
+        The number of current page. Must be more than zero. By default, `1`
+    
+    Raises
+    ------
+    :class:`ValueError`
+        If :param:`count` or :param:`page` less than or equal to zero (`0`)
+        
+    :class:`TankiOnlineException`
+        If the response from the API says that the operation wasn't successful"""
+    if count < 1:
+        raise ValueError("Value of \"count\" parameter must be more than 0")
+
+    if page < 1:
+        raise ValueError("Value of \"page\" parameter must be more than 0")
+
+    endpoint: str = f"/articles?count={count}&page={page}"
+    response: Mapping[str, Any] = await request("GET", endpoint, base="https://tankisport.com/api")
+
+    if not response.get("success", False):
+        raise TankiOnlineException("Failed to get articles")
+
+    output: List[Article] = [Article.from_json(a) for a in response["data"]["articles"]]
+    meta: Mapping[str, Any] = response["meta"]
+    return ESportListResponse(output, page=page, last_page=meta["last_page"], per_page=count, total=meta["total"])

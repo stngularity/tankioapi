@@ -6,12 +6,37 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."""
 
-from .client import *
-from .errors import *
-from .types import *
+from dataclasses import dataclass
+from typing import Generic, List, TypeVar
 
-__name__ = "tankio_api"
-__author__ = "stngularity"
-__license__ = "MIT"
-__copyright__ = "Copyright 2023-present stngularity"
-__version__ = "1.1.0a2"
+__all__ = ("ESportListResponse",)
+
+T = TypeVar('T')
+
+
+@dataclass
+class ESportListResponse(Generic[T]):
+    """The dataclass for multi-page responses from Tanki Sport API
+    
+    Attributes
+    ----------
+    data: List[:class:`Any`]
+        The list with elements of API response
+        
+    page: :class:`int`
+        Number of current page in pagination
+        
+    last_page: :class:`int`
+        Number of last page in pagination
+        
+    per_page: :class:`int`
+        Number of elements per pagination page
+        
+    total: :class:`int`
+        Total number of elements in pagination"""
+
+    data: List[T]
+    page: int
+    last_page: int
+    per_page: int
+    total: int

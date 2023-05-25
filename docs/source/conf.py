@@ -2,7 +2,6 @@
 
 import re
 
-
 html_title = project = "tankioapi"
 copyright = "2023-present stngularity"
 author = "stngularity"

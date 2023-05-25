@@ -12,6 +12,8 @@ from dataclasses import dataclass
 from datetime import datetime as dt
 from typing import Any, List, Mapping, Optional, Type
 
+from ..http import request
+
 __all__ = ("Article", "ArticleAuthor", "ArticleCategory", "ArticleComment")
 
 
@@ -133,6 +135,16 @@ class Article:
         self.comments = None if comments is None else [ArticleComment.from_json(c) for c in comments]
         return self
 
+    async def read_image(self) -> Optional[bytes]:
+        """Optional[:class:`bytes`]: If the article contains an image, then reads
+        data of this image and returns it"""
+        return None if self.image is None else await request("GET", self.image, base="", bytes=True)
+
+    async def read_wide_image(self) -> Optional[bytes]:
+        """Optional[:class:`bytes`]: If the article contains a wide image, then
+        reads data of this image and returns it"""
+        return None if self.wide_image is None else await request("GET", self.wide_image, base="", bytes=True)
+
 
 @dataclass
 class ArticleAuthor:
@@ -218,7 +230,7 @@ class ArticleCategory:
             The original data of category"""
         self = cls.__new__(cls)
         self.id = data["id"]
-        self.name = data["name"]
+        self.name = data["category"]
         self.lang = data["lang"]
         self.sort_order = data.get("sort_order")
         self.status = data.get("status")
