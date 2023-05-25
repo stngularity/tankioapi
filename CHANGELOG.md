@@ -1,3 +1,7 @@
+## 1.1.0a4
+- `+` Added the ability to receive comments of any article
+    > Is `get_article_comments` function
+
 ## 1.1.0a3
 - `+` Added the ability to receive information about any article
     > Is `get_article_info` function

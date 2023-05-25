@@ -12,9 +12,10 @@ from typing import Any, List, Mapping
 
 from .errors import TankiOnlineException, UserNotFoundError
 from .http import request
-from .types import Article, ESportListResponse, StableServerStatus, TestServerStatus, TopLists, User
+from .types import Article, ArticleComment, ESportListResponse, StableServerStatus, TestServerStatus, TopLists, User
 
-__all__ = ("get_tops", "get_user", "get_status", "get_test_status", "get_articles", "get_article_info")
+__all__ = ("get_tops", "get_user", "get_status", "get_test_status", "get_articles", "get_article_info",
+           "get_article_comments")
 
 
 async def get_tops() -> TopLists:
@@ -131,3 +132,25 @@ async def get_article_info(id: int) -> Article:
         raise TankiOnlineException(f"Failed to get info about article with {id} id")
 
     return Article.from_json(response["data"])
+
+
+async def get_article_comments(article_id: int) -> List[ArticleComment]:
+    """List[:class:`ArticleComment`]: Tries to get comments of article with
+    specified ID
+    
+    Parameters
+    ----------
+    article_id: :class:`int`
+        ID of the article you want to get comments of. For example, You can specify
+        ID of last article from response of :func:`get_articles` function
+    
+    Raises
+    ------
+    :class:`TankiOnlineException`
+        If the response from the API says that the operation wasn't successful"""
+    endpoint: str = f"/comments?article_id={article_id}"
+    response: Mapping[str, Any] = await request("GET", endpoint, base="https://tankisport.com/api")
+    if not response.get("success", False):
+        raise TankiOnlineException(f"Failed to get comments of article with {article_id} id")
+
+    return [ArticleComment.from_json(c) for c in response["data"]]

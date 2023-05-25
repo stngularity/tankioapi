@@ -265,11 +265,13 @@ class ArticleComment:
     user_id: :class:`int`
         The ID of the user that sent the comment
         
-    created_at: :class:`datetime`
-        The exact date and time the comment was created
+    created_at: Optional[:class:`datetime`]
+        The exact date and time the comment was created. If isn't provided by API,
+        then it's `None`
         
-    updated_at: :class:`datetime`
-        The exact date and time the comment was updated"""
+    updated_at: Optional[:class:`datetime`]
+        The exact date and time the comment was updated. If isn't provided by API,
+        then it's `None`"""
 
     id: int
     commentable_type: str
@@ -278,8 +280,8 @@ class ArticleComment:
     text: str
     is_approved: bool
     user_id: int
-    created_at: dt
-    updated_at: dt
+    created_at: Optional[dt]
+    updated_at: Optional[dt]
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(id={self.id}, text={self.text!r}, user_id={self.user_id})"
@@ -312,6 +314,10 @@ class ArticleComment:
         self.text = data["comment"]
         self.is_approved = data["is_approved"] == 1
         self.user_id = data["user_id"]
-        self.created_at = dt.strptime(data["created_at"], "%Y-%m-%d %H:%M:%S")
-        self.updated_at = dt.strptime(data["updated_at"], "%Y-%m-%d %H:%M:%S")
+
+        created_at: Optional[str] = data.get("created_at")
+        self.created_at = None if created_at is None else dt.strptime(created_at, "%Y-%m-%d %H:%M:%S")
+
+        updated_at: Optional[str] = data.get("updated_at")
+        self.updated_at = None if updated_at is None else dt.strptime(updated_at, "%Y-%m-%d %H:%M:%S")
         return self
